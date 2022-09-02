@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+type Channel {
+  """channel id"""
+  id: Int!
+
+  """channel name"""
+  name: String!
+
+  """channel created time"""
+  createdAt: DateTime!
+
+  """channel updated time"""
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Message {
+  """message id"""
+  id: Int!
+
+  """message title"""
+  title: String!
+
+  """message content"""
+  content: String!
+
+  """channel of the message"""
+  channel: Channel!
+
+  """message created time"""
+  createdAt: DateTime!
+
+  """message updated time"""
+  updatedAt: DateTime!
+}
+
+type Query {
+  channels(
+    """分页跳过的记录数"""
+    skip: Int = 0
+
+    """分页大小，默认为25，最大为50"""
+    take: Int = 25
+
+    """排序字段，格式为：字段名:排序方式，排序方式为：ASC、DESC，多个排序字段用逗号分隔"""
+    sortBy: String
+  ): [Channel!]!
+  channel(id: Int!): Channel!
+  messages(
+    """分页跳过的记录数"""
+    skip: Int = 0
+
+    """分页大小，默认为25，最大为50"""
+    take: Int = 25
+
+    """排序字段，格式为：字段名:排序方式，排序方式为：ASC、DESC，多个排序字段用逗号分隔"""
+    sortBy: String
+
+    """channel id"""
+    channelId: Int
+  ): [Message!]!
+  message(id: Int!): Message!
+}
+
+type Mutation {
+  createChannel(createChannelInput: CreateChannelInput!): Channel!
+  updateChannel(id: Int!, updateChannelInput: UpdateChannelInput!): Channel!
+  removeChannel(id: Int!): Channel!
+  createMessage(createMessageInput: CreateMessageInput!): Message!
+  updateMessage(id: Int!, updateMessageInput: UpdateMessageInput!): Message!
+  removeMessage(id: Int!): Message!
+}
+
+input CreateChannelInput {
+  """channel name"""
+  name: String!
+}
+
+input UpdateChannelInput {
+  """channel name"""
+  name: String
+}
+
+input CreateMessageInput {
+  """message title"""
+  title: String!
+
+  """message content"""
+  content: String!
+
+  """channel id"""
+  channelId: Int!
+}
+
+input UpdateMessageInput {
+  """message title"""
+  title: String
+
+  """message content"""
+  content: String
+
+  """channel id"""
+  channelId: Int
+}

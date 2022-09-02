@@ -1,0 +1,929 @@
+{
+	"info": {
+		"_postman_id": "221c5540-25e0-42ef-887f-3d0bb1968dda",
+		"name": "nestjs-channel-messenger-demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "565782"
+	},
+	"item": [
+		{
+			"name": "channel",
+			"item": [
+				{
+					"name": "create a channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createChannel($createChannelInput: CreateChannelInput!) {\r\n  createChannel(createChannelInput: $createChannelInput) {\r\n      id,\r\n      name\r\n  }\r\n}",
+								"variables": "{\r\n    \"createChannelInput\": {\r\n        \"name\":\"频道3\"\r\n    }\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "创建频道\n\n*   CreateChannelInput  \n    \\- name: String! 频道标题"
+					},
+					"response": [
+						{
+							"name": "create a channel",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createChannel($createChannelInput: CreateChannelInput!) {\r\n  createChannel(createChannelInput: $createChannelInput) {\r\n      id,\r\n      name\r\n  }\r\n}",
+										"variables": "{\r\n    \"createChannelInput\": {\r\n        \"name\":\"频道1\"\r\n    }\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-3sN2EaIA2skL0njELD7Xq6m7CaA\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 01 Sep 2022 18:04:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"createChannel\": {\n            \"id\": 2,\n            \"name\": \"频道1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get channel list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ChannelList ($skip: Int, $take: Int, $sortBy: String) {\r\n    channels (skip: $skip, take: $take, sortBy: $sortBy){\r\n       id,\r\n       name,\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"skip\": 0,\r\n    \"take\": 25,\r\n    \"sortBy\":\"id:DESC\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "获取频道列表\n\n*   skip 分页跳过记录数，选填，默认0,\n*   take 分页获取记录数，选填，默认25\n*   sortBy 排序，格式为 排序字段:排序方式，多个字段排序时用逗号分隔，默认按id降序"
+					},
+					"response": [
+						{
+							"name": "get channel list",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query ChannelList ($skip: Int, $take: Int, $sortBy: String) {\r\n    channels (skip: $skip, take: $take, sortBy: $sortBy){\r\n       id,\r\n       name,\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+										"variables": "{\r\n    \"skip\": 0,\r\n    \"take\": 25,\r\n    \"sortBy\":\"id:DESC\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "336"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"150-x8HreHOBw/HOmGmJl8OXaR/G758\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 11:14:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"channels\": [\n            {\n                \"id\": 3,\n                \"name\": \"频道3\",\n                \"createdAt\": \"2022-09-02T10:49:07.000Z\",\n                \"updatedAt\": \"2022-09-02T10:49:07.000Z\"\n            },\n            {\n                \"id\": 2,\n                \"name\": \"频道1\",\n                \"createdAt\": \"2022-09-01T18:04:58.000Z\",\n                \"updatedAt\": \"2022-09-01T18:04:58.000Z\"\n            },\n            {\n                \"id\": 1,\n                \"name\": \"频道1\",\n                \"createdAt\": \"2022-09-01T18:04:48.000Z\",\n                \"updatedAt\": \"2022-09-01T18:04:48.000Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get a channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Channel ($id:Int!) {\r\n    channel (id: $id){\r\n       id,\r\n       name,\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"id\": 1\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "*   id 频道id"
+					},
+					"response": [
+						{
+							"name": "get a channel",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query Channel ($id:Int!) {\r\n    channel (id: $id){\r\n       id,\r\n       name,\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+										"variables": "{\r\n    \"id\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7d-neMiJLSpV3gbtP1uL20Tq9Pi0nY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:49:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"channel\": {\n            \"id\": 1,\n            \"name\": \"频道1\",\n            \"createdAt\": \"2022-09-01T18:04:48.000Z\",\n            \"updatedAt\": \"2022-09-01T18:04:48.000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update a channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updateChannel($id: Int!, $updateChannelInput: UpdateChannelInput!) {\r\n  updateChannel(id:$id, updateChannelInput: $updateChannelInput) {\r\n      id,\r\n      name\r\n  }\r\n}",
+								"variables": "{\r\n    \"id\":1,\r\n    \"updateChannelInput\":{\r\n        \"name\": \"频道1\"\r\n    }\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "更新频道\n\n*   id 频道Id\n*   UpdateChannelInput  \n    \\- name: String 频道标题"
+					},
+					"response": [
+						{
+							"name": "update a channel",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updateChannel($id: Int!, $updateChannelInput: UpdateChannelInput!) {\r\n  updateChannel(id:$id, updateChannelInput: $updateChannelInput) {\r\n      id,\r\n      name\r\n  }\r\n}",
+										"variables": "{\r\n    \"id\":1,\r\n    \"updateChannelInput\":{\r\n        \"name\": \"频道1\"\r\n    }\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"35-nQng/uFET7BJRUub0XYdze4PX4I\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:49:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"updateChannel\": {\n            \"id\": 1,\n            \"name\": \"频道1\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "remove a channel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation removeChannel($id: Int!) {\r\n  removeChannel(id: $id) {\r\n      id,\r\n  }\r\n}",
+								"variables": "{\r\n    \"id\":1\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "删除频道\n\n*   id 频道id"
+					},
+					"response": [
+						{
+							"name": "remove a channel",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation removeChannel($id: Int!) {\r\n  removeChannel(id: $id) {\r\n      id,\r\n  }\r\n}",
+										"variables": "{\r\n    \"id\":1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-8F2F8+DKYdWnnhDhQSvs2i33QsU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 16:29:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"removeChannel\": {\n            \"id\": 1\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "type Channel {  \n\"\"\"channel id\"\"\"  \nid: Int!\n\n\"\"\"channel name\"\"\"  \nname: String!\n\n\"\"\"channel created time\"\"\"  \ncreatedAt: DateTime!\n\n\"\"\"channel updated time\"\"\"  \nupdatedAt: DateTime!  \n}"
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "create a message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation createMessage($message: CreateMessageInput!) {\r\n  createMessage(createMessageInput: $message) {\r\n      id,\r\n  }\r\n}",
+								"variables": "{\r\n    \"message\": {\r\n        \"title\":\"消息标题1\",\r\n        \"content\":\"消息内容1\",\r\n        \"channelId\":1\r\n    }\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "创建消息\n\n*   CreateMessageInput  \n    \\- title: String! 消息标题  \n    \\- content: String! 消息内容  \n    \\- channelId: Int! 频道id"
+					},
+					"response": [
+						{
+							"name": "create a message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation createMessage($message: CreateMessageInput!) {\r\n  createMessage(createMessageInput: $message) {\r\n      id,\r\n  }\r\n}",
+										"variables": "{\r\n    \"message\": {\r\n        \"title\":\"消息标题\",\r\n        \"content\":\"消息内容\",\r\n        \"channelId\":1\r\n    }\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-BY0npbOh3skfLm/ozNcMM1ysBz8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:22:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"createMessage\": {\n            \"id\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get message list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query MessageList ($skip: Int, $take: Int, $sortBy: String, $channelId: Int) {\r\n    messages (skip: $skip, take: $take, sortBy: $sortBy, channelId: $channelId){\r\n       id,\r\n       title,\r\n       content,\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"channelId\":1,\r\n    \"skip\": 0,\r\n    \"take\": 25,\r\n    \"sortBy\":\"id:DESC\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "获取消息列表\n\n*   channelId 频道id\n*   skip 分页跳过记录数，选填，默认0,\n*   take 分页获取记录数，选填，默认25\n*   sortBy 排序，格式为 排序字段:排序方式，多个字段排序时用逗号分隔，默认按id降序"
+					},
+					"response": [
+						{
+							"name": "get message list",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query MessageList ($skip: Int, $take: Int, $sortBy: String, $channelId: Int) {\r\n    messages (skip: $skip, take: $take, sortBy: $sortBy, channelId: $channelId){\r\n       id,\r\n       title,\r\n       content,\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+										"variables": "{\r\n    \"channelId\":1,\r\n    \"skip\": 0,\r\n    \"take\": 25,\r\n    \"sortBy\":\"id:DESC\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "298"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12a-ksF6mNHOS63myUdGaC6Y2AhHmfA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:47:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"messages\": [\n            {\n                \"id\": 7,\n                \"title\": \"消息标题1\",\n                \"content\": \"消息内容1\",\n                \"createdAt\": \"2022-09-02T12:44:56.000Z\",\n                \"updatedAt\": \"2022-09-02T12:44:56.000Z\"\n            },\n            {\n                \"id\": 6,\n                \"title\": \"消息标题1\",\n                \"content\": \"消息内容1\",\n                \"createdAt\": \"2022-09-02T12:44:49.000Z\",\n                \"updatedAt\": \"2022-09-02T12:44:49.000Z\"\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get a message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query Message ($id: Int!) {\r\n    message (id: $id){\r\n       id,\r\n       title,\r\n       content,\r\n       channel {\r\n           id,\r\n           name\r\n       },\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+								"variables": "{\r\n    \"id\": 7\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "获取消息内容\n\n*   id 消息id"
+					},
+					"response": [
+						{
+							"name": "get a message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query Message ($id: Int!) {\r\n    message (id: $id){\r\n       id,\r\n       title,\r\n       content,\r\n       channel {\r\n           id,\r\n           name\r\n       },\r\n       createdAt,\r\n       updatedAt\r\n    }\r\n}",
+										"variables": "{\r\n    \"id\": 7\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "194"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c2-WuarbcN/O75BxrNDHNnlReseRM4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:50:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"message\": {\n            \"id\": 7,\n            \"title\": \"消息标题1\",\n            \"content\": \"消息内容1\",\n            \"channel\": {\n                \"id\": 1,\n                \"name\": \"频道1\"\n            },\n            \"createdAt\": \"2022-09-02T12:44:56.000Z\",\n            \"updatedAt\": \"2022-09-02T12:44:56.000Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update a message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation updaeMessage($id: Int!, $updateMessageInput: UpdateMessageInput!) {\r\n  updateMessage(id:$id, updateMessageInput: $updateMessageInput) {\r\n      id,\r\n      title,\r\n      content\r\n  }\r\n}",
+								"variables": "{\r\n    \"id\":1,\r\n    \"updateMessageInput\":{\r\n        \"title\": \"修改标题\",\r\n        \"channelId\": 1\r\n    }\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "更新消息\n\n*   id 消息Id\n    \n\n*   UpdateMessageInput  \n    \\- title: String 消息标题  \n    \\- content: String 消息内容  \n    \\- channelId: Int 频道id"
+					},
+					"response": [
+						{
+							"name": "update a message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation updaeMessage($id: Int!, $updateMessageInput: UpdateMessageInput!) {\r\n  updateMessage(id:$id, updateMessageInput: $updateMessageInput) {\r\n      id,\r\n      title,\r\n      content\r\n  }\r\n}",
+										"variables": "{\r\n    \"id\":1,\r\n    \"updateMessageInput\":{\r\n        \"title\": \"修改标题\",\r\n        \"channelId\": 1\r\n    }\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-qow8meOgWv6AEo8cfcXhbK0zVIM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:55:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"updateMessage\": {\n            \"id\": 1,\n            \"title\": \"修改标题\",\n            \"content\": \"消息内容\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "remove a message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation removeMessage($id: Int!) {\r\n  removeMessage(id: $id) {\r\n      id,\r\n  }\r\n}",
+								"variables": "{\r\n    \"id\":3\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{api_host}}/graphql",
+							"host": [
+								"{{api_host}}"
+							],
+							"path": [
+								"graphql"
+							]
+						},
+						"description": "删除消息\n\n*   id 消息id"
+					},
+					"response": [
+						{
+							"name": "remove a message",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation removeMessage($id: Int!) {\r\n  removeMessage(id: $id) {\r\n      id,\r\n  }\r\n}",
+										"variables": "{\r\n    \"id\":3\r\n}"
+									}
+								},
+								"url": {
+									"raw": "{{api_host}}/graphql",
+									"host": [
+										"{{api_host}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-n1eMfkQvNjvSp+YgM/5TwHQnBdM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 02 Sep 2022 12:57:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"removeMessage\": {\n            \"id\": 3\n        }\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "type Message {  \n\"\"\"message id\"\"\"  \nid: Int!\n\n\"\"\"message title\"\"\"  \ntitle: String!\n\n\"\"\"message content\"\"\"  \ncontent: String!\n\n\"\"\"channel of the message\"\"\"  \nchannel: Channel!\n\n\"\"\"message created time\"\"\"  \ncreatedAt: DateTime!\n\n\"\"\"message updated time\"\"\"  \nupdatedAt: DateTime!  \n}"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_host",
+			"value": "http://127.0.0.1:3000",
+			"type": "string"
+		}
+	]
+}
