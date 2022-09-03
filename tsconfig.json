@@ -19,6 +19,6 @@
     "noFallthroughCasesInSwitch": false,
     "allowJs": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "test/utils/repository.mock.ts"],
   "exclude": ["node_modules", "test"]
 }

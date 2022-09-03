@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 import {
   repositoryMockFactory,
   MockType,
-} from '../../common/utils/repository.mock';
+} from '../../../test/utils/repository.mock';
 
 describe('ChannelService', () => {
   let service: ChannelService;

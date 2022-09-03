@@ -18,7 +18,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "DATABASE_PATH=:memory: jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/apollo": "^10.1.0",
@@ -30,8 +30,11 @@
     "@nestjs/typeorm": "^9.0.1",
     "apollo-server": "^3.10.2",
     "apollo-server-express": "^3.10.2",
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "dotenv": "^16.0.2",
     "graphql": "^15.8.0",
+    "graphql-depth-limit": "^1.1.0",
     "graphql-query-complexity": "^0.12.0",
     "graphql-subscriptions": "^2.0.0",
     "graphql-tools": "^8.3.4",

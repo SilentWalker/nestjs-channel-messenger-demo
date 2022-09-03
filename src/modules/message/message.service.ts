@@ -14,6 +14,9 @@ export class MessageService {
   constructor(
     @InjectRepository(Message)
     private readonly messageRepository: Repository<Message>,
+
+    @InjectRepository(Channel)
+    private readonly channelRepository: Repository<Channel>,
   ) {}
 
   /**
@@ -23,11 +26,16 @@ export class MessageService {
    * @returns
    * @memberof MessageService
    */
-  create(createMessageInput: CreateMessageInput) {
-    const channel = new Channel();
-    channel.id = createMessageInput.channelId;
+  async create(createMessageInput: CreateMessageInput) {
+    const { channelId } = createMessageInput;
+    const _channel = await this.channelRepository.findOne({
+      where: { id: channelId },
+    });
+    if (!_channel) {
+      throw new CustomError(GraphqlMsgCode.CHANNEL_NOT_FOUND, '频道不存在');
+    }
     const message = this.messageRepository.create(createMessageInput);
-    message.channel = channel;
+    message.channel = _channel;
     return this.messageRepository.save(message);
   }
 
@@ -104,9 +112,13 @@ export class MessageService {
       content,
     };
     if (channelId) {
-      const channel = new Channel();
-      channel.id = channelId;
-      updateObj['channel'] = channel;
+      const _channel = await this.channelRepository.findOne({
+        where: { id: channelId },
+      });
+      if (!_channel) {
+        throw new CustomError(GraphqlMsgCode.CHANNEL_NOT_FOUND, '频道不存在');
+      }
+      updateObj['channel'] = _channel;
     }
     await this.messageRepository.update(id, updateObj);
 

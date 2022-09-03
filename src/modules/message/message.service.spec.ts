@@ -2,11 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { MessageService } from './message.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Message } from './entities/message.entity';
+import { Channel } from '../channel/entities/channel.entity';
 import { Repository } from 'typeorm';
 import {
   repositoryMockFactory,
   MockType,
-} from '../../common/utils/repository.mock';
+} from '../../../test/utils/repository.mock';
 
 describe('MessageService', () => {
   let service: MessageService;
@@ -18,6 +19,10 @@ describe('MessageService', () => {
         MessageService,
         {
           provide: getRepositoryToken(Message),
+          useFactory: repositoryMockFactory,
+        },
+        {
+          provide: getRepositoryToken(Channel),
           useFactory: repositoryMockFactory,
         },
       ],

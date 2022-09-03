@@ -1,12 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ConfigService } from '@nestjs/config';
+import { PORT, NODE_ENV } from './environments';
+import { LoggerMiddleware, LoggingInterceptor, ValidationPipe } from './common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const configService = app.get(ConfigService);
-  const port = configService.get('port');
-  await app.listen(port);
+
+  NODE_ENV !== 'production' && app.use(LoggerMiddleware);
+
+  app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalPipes(new ValidationPipe());
+
+  await app.listen(PORT);
   const url = await app.getUrl();
   console.log(`Server running on ${url}, GraphQL on ${url}/graphql`);
 }
